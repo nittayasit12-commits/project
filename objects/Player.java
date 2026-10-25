@@ -59,6 +59,7 @@ public class Player extends JPanel implements Runnable, KeyListener, MouseListen
             if (isEnded || isCrashed) {
                 move(new Position(0, -100, -100, 0));
                 Game.network.emit(Network.ACTION_PLAYER_MOVE, new Position(0, x, y, rotation));
+                Asset.SoundDead();
                 break;
             }
 
@@ -102,7 +103,6 @@ public class Player extends JPanel implements Runnable, KeyListener, MouseListen
         if (isPlayer && isEnded && !isCrashed) {
             g.setFont(new Font("CommitMono", Font.BOLD, 32));
             g.drawString("WIN ", XConfig.DISPLAY_WIDTH / 2 - 25, XConfig.DISPLAY_HEIGH / 2);
-            Asset.SoundWin();
             return;
         }
 
