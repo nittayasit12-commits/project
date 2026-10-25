@@ -11,14 +11,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Asset {
     public static Image getImage(String path) {
-        String pathString = System.getProperty("user.dir") + File.separator +"1204203-final-project"+File.separator+ "assets" + File.separator + path;
-       
+        String pathString = System.getProperty("user.dir") + File.separator+File.separator+ "assets" + File.separator + path;
+       System.out.println(pathString);
         return Toolkit.getDefaultToolkit().createImage(pathString);
         
     }
     // sound background
     public static void SoundBackground() {
-        String pathSoundBackground = System.getProperty("user.dir") + File.separator +"1204203-final-project"+File.separator+ "assets" + File.separator +"sound"+File.separator +"background.wav";
+        String pathSoundBackground = System.getProperty("user.dir") + File.separator+File.separator+ "assets" + File.separator +"sound"+File.separator +"background.wav";
         System.out.println(pathSoundBackground);
         new Thread(() -> {
             try {
@@ -34,7 +34,7 @@ public class Asset {
         }).start();
     }
     public static void SoundShoot() {
-        String pathSoundShoot = System.getProperty("user.dir") + File.separator +"1204203-final-project"+File.separator+ "assets" + File.separator +"sound"+File.separator +"shoot.wav";
+        String pathSoundShoot = System.getProperty("user.dir") + File.separator+File.separator+ "assets" + File.separator +"sound"+File.separator +"shoot.wav";
         new Thread(() -> {
             try {
                 Clip clip = AudioSystem.getClip();
@@ -49,6 +49,61 @@ public class Asset {
             }
             
         }).start();
+        
+        
+    }   
+    public static void SoundLose() {
+        String pathSoundLose = System.getProperty("user.dir") + File.separator+File.separator+ "assets" + File.separator +"sound"+File.separator +"lose.wav";
+        new Thread(() -> {
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File(pathSoundLose)));
+            
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(0.0f); // Reduce volume by 10 decib
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+               
+            }
+            
+        }).start();
+        
+    }     
+      public static void SoundWin() {
+        String pathSoundWin = System.getProperty("user.dir") + File.separator+File.separator+ "assets" + File.separator +"sound"+File.separator +"win.wav";
+        new Thread(() -> {
+            try {
+                Clip clip = AudioSystem.getClip();
+                clip.open(AudioSystem.getAudioInputStream(new File(pathSoundWin)));
+            
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(0.0f); // Reduce volume by 10 decib
+                clip.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+               
+            }
+            
+        }).start();
+        
+    }   
+      public static void SoundDead() {
+        String pathSoundDead = System.getProperty("user.dir") + File.separator+File.separator+ "assets" + File.separator +"sound"+File.separator +"dead.wav";
+                new Thread(() -> {
+                    try {
+                        Clip clip = AudioSystem.getClip();
+                        clip.open(AudioSystem.getAudioInputStream(new File(pathSoundDead)));
+                    
+                        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                        gainControl.setValue(0.0f); // Reduce volume by 10 decib
+                        clip.start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    
+                    }
+                    
+                }).start();
         
     }   
     public static Image getShip(int id) {
