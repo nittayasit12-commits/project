@@ -110,6 +110,7 @@ public class Asset {
         return getImage("Ship" + id + ".png");
     }
     public static Image getAmmo(int id) {
+        Asset.SoundShoot();
         return getImage("Ship" + id + "_ammo.png");
     }
 }

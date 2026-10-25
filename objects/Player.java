@@ -109,7 +109,6 @@ public class Player extends JPanel implements Runnable, KeyListener, MouseListen
         if (isPlayer && isCrashed) {
             g.setFont(new Font("CommitMono", Font.BOLD, 32));
             g.drawString("DIE ", XConfig.DISPLAY_WIDTH / 2 - 25, XConfig.DISPLAY_HEIGH / 2);
-            Asset.SoundLose();
             return;
         }
 
@@ -187,7 +186,6 @@ public class Player extends JPanel implements Runnable, KeyListener, MouseListen
         if (life <= 0) {
             life = 0;
             isCrashed = true;
-            Asset.SoundLose();
         }
     }
 
@@ -212,7 +210,6 @@ public class Player extends JPanel implements Runnable, KeyListener, MouseListen
         for (int idx = 0; idx < ammos.length; idx++) {
             if (ammos[idx] != null)
                 continue;
-            Asset.SoundShoot();
             Game.network.emit(Network.ACTION_PLAYER_FIRE, new Position(id, x, y, rotation));
             ammos[idx] = new Ammo(this, id, x, y, rotation);
             ammos[idx].start();
